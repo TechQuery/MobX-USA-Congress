@@ -1,0 +1,14 @@
+{
+  "name": "mobx-usa-congress",
+  "version": "0.1.0",
+  "license": "ISC",
+  "author": "",
+  "description": "",
+  "keywords": [],
+  "dependencies": {
+    "koajax": "^3.0.2",
+    "mobx": "^6.13.2",
+    "mobx-restful": "^1.0.1",
+    "web-utility": "^4.4.0"
+  }
+}
