@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "moduleResolution": "Node",
+        "useDefineForClassFields": true,
+        "skipLibCheck": true,
+        "lib": ["ES2023", "DOM"]
+    },
+    "include": ["source/*.ts"],
+    "typedocOptions": {
+        "name": "MobX USA Congress",
+        "excludeExternals": true,
+        "excludePrivate": true,
+        "readme": "./ReadMe.md",
+        "plugin": ["typedoc-plugin-mdn-links"]
+    }
+}
