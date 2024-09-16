@@ -1,14 +1,70 @@
 {
-  "name": "mobx-usa-congress",
-  "version": "0.1.0",
-  "license": "ISC",
-  "author": "",
-  "description": "",
-  "keywords": [],
-  "dependencies": {
-    "koajax": "^3.0.2",
-    "mobx": "^6.13.2",
-    "mobx-restful": "^1.0.1",
-    "web-utility": "^4.4.0"
-  }
+    "name": "mobx-usa-congress",
+    "version": "0.1.0",
+    "license": "LGPL-3.0-or-later",
+    "author": "shiy2008@gmail.com",
+    "description": "MobX SDK for USA Congress API, which is based on MobX-RESTful.",
+    "keywords": [
+        "mobx",
+        "sdk",
+        "restful",
+        "api",
+        "decorator",
+        "usa",
+        "congress",
+        "governance"
+    ],
+    "source": "source/index.ts",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.esm.js",
+    "main": "dist/index.js",
+    "homepage": "https://tech-query.me/MobX-USA-Congress/",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TechQuery/MobX-USA-Congress.git"
+    },
+    "bugs": {
+        "url": "https://github.com/TechQuery/MobX-USA-Congress/issues"
+    },
+    "dependencies": {
+        "@swc/helpers": "^0.5.13",
+        "koajax": "^3.0.2",
+        "mobx": "^6.13.2",
+        "mobx-restful": "^1.0.1",
+        "web-utility": "^4.4.0"
+    },
+    "devDependencies": {
+        "@parcel/config-default": "~2.12.0",
+        "@parcel/packager-ts": "~2.12.0",
+        "@parcel/transformer-typescript-tsc": "~2.12.0",
+        "@parcel/transformer-typescript-types": "~2.12.0",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
+        "parcel": "~2.12.0",
+        "prettier": "^3.3.3",
+        "typedoc": "^0.26.7",
+        "typedoc-plugin-mdn-links": "^3.2.12",
+        "typescript": "~5.6.2"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "arrowParens": "avoid",
+        "tabWidth": 4
+    },
+    "lint-staged": {
+        "*.{md,ts,json,yml}": "prettier --write"
+    },
+    "browserslist": "> 0.5%, last 2 versions, not dead, IE 11",
+    "targets": {
+        "main": {
+            "optimize": true
+        }
+    },
+    "scripts": {
+        "prepare": "husky",
+        "test": "lint-staged",
+        "build": "rm -rf .parcel-cache/ dist/ docs/  &&  parcel build  &&  typedoc source/",
+        "prepublishOnly": "npm test  &&  npm run build"
+    }
 }

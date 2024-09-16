@@ -1,6 +1,6 @@
-import { HTTPClient } from "koajax";
+import { HTTPClient } from 'koajax';
 
-export const client = new HTTPClient({
-  baseURI: "https://api.congress.gov/v3/",
-  responseType: "json",
+export const congressClient = new HTTPClient({
+    baseURI: 'https://api.congress.gov/v3/',
+    responseType: 'json'
 });

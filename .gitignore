@@ -1,1 +1,8 @@
 node_modules/
+package-lock.json
+yarn.lock
+.parcel-cache/
+dist/
+docs/
+.env
+.vscode/settings.json
