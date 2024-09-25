@@ -1,8 +1,8 @@
 import { observable } from 'mobx';
 import { ListModel, Stream, toggle } from 'mobx-restful';
-import { buildURLData } from 'web-utility';
 
-import { congressClient } from './Base';
+import { Base, congressClient, createListStream } from './Base';
+import { Term } from './Member';
 
 export interface Session
     extends Record<'chamber' | 'startDate' | 'endDate', string> {
@@ -11,8 +11,9 @@ export interface Session
 }
 
 export interface Congress
-    extends Record<'name' | 'startYear' | 'endYear', string>,
-        Partial<Record<'updateDate' | 'url', string>> {
+    extends Base,
+        Required<Pick<Term, 'startYear' | 'endYear'>> {
+    name: string;
     sessions: Session[];
 }
 
@@ -23,29 +24,7 @@ export class CongressModel extends Stream<Congress>(ListModel) {
     @observable
     accessor thisYearOne: Congress | undefined;
 
-    async *openStream() {
-        var totalCount = 0;
-
-        for (let pageIndex = 1, pageSize = 10; ; pageIndex++) {
-            const { body } = await this.client.get<{ congresses: Congress[] }>(
-                `${this.baseURI}?${buildURLData({
-                    offset: (pageIndex - 1) * pageSize,
-                    limit: pageSize
-                })}`
-            );
-            const { congresses } = body!;
-
-            if (!congresses[0]) break;
-
-            totalCount += congresses.length;
-
-            yield* congresses;
-
-            if (congresses.length < pageSize) break;
-        }
-
-        this.totalCount = totalCount;
-    }
+    openStream = createListStream<Congress>()('congresses');
 
     @toggle('downloading')
     async getOne(id: number) {

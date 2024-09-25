@@ -11,6 +11,7 @@
 ## Model
 
 1. [Congress](source/Congress.ts)
+2. [Member](source/Member.ts)
 
 ## Usage
 
