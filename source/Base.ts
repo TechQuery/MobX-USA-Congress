@@ -1,5 +1,5 @@
 import { HTTPClient } from 'koajax';
-import { ListModel } from 'mobx-restful';
+import { DataObject, ListModel } from 'mobx-restful';
 import { buildURLData } from 'web-utility';
 
 export const congressClient = new HTTPClient({
@@ -10,7 +10,7 @@ export const congressClient = new HTTPClient({
 export type Base = Record<'updateDate' | 'url', string>;
 
 export const createListStream =
-    <D extends Base>() =>
+    <D extends DataObject>() =>
     <K extends string>(key: K) =>
         async function* openStream(this: ListModel<D>) {
             var totalCount = 0;
