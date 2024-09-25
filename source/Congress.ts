@@ -3,11 +3,14 @@ import { ListModel, Stream, toggle } from 'mobx-restful';
 
 import { Base, congressClient, createListStream } from './Base';
 import { Term } from './Member';
+import { SummaryModel } from './Summary';
 
-export interface Session
-    extends Record<'chamber' | 'startDate' | 'endDate', string> {
+export type Chamber = 'House' | 'Senate';
+
+export interface Session extends Record<'startDate' | 'endDate', string> {
     type: 'R';
     number: number;
+    chamber: Chamber;
 }
 
 export interface Congress
@@ -24,6 +27,9 @@ export class CongressModel extends Stream<Congress>(ListModel) {
     @observable
     accessor thisYearOne: Congress | undefined;
 
+    @observable
+    accessor currentSummary: SummaryModel | undefined;
+
     openStream = createListStream<Congress>()('congresses');
 
     @toggle('downloading')
@@ -31,6 +37,8 @@ export class CongressModel extends Stream<Congress>(ListModel) {
         const { body } = await this.client.get<{ congress: Congress }>(
             `${this.baseURI}/${id}`
         );
+        this.currentSummary = new SummaryModel(id);
+
         return (this.currentOne = body!.congress);
     }
 
