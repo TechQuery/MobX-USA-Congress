@@ -5,10 +5,12 @@ import { Base, congressClient, createListStream } from './Base';
 import { Term } from './Member';
 import { SummaryModel } from './Summary';
 
-export interface Session
-    extends Record<'chamber' | 'startDate' | 'endDate', string> {
+export type Chamber = 'House' | 'Senate';
+
+export interface Session extends Record<'startDate' | 'endDate', string> {
     type: 'R';
     number: number;
+    chamber: Chamber;
 }
 
 export interface Congress

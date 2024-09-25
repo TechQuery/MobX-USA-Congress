@@ -12,6 +12,8 @@
 
 1. [Congress](source/Congress.ts)
 2. [Member](source/Member.ts)
+3. [Hearing](source/Hearing.ts)
+4. [Summary](source/Summary.ts)
 
 ## Usage
 

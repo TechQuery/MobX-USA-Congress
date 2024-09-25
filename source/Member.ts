@@ -2,6 +2,7 @@ import { observable } from 'mobx';
 import { ListModel, Stream, toggle } from 'mobx-restful';
 
 import { Base, congressClient, createListStream } from './Base';
+import { Chamber } from './Congress';
 
 export type Depiction = Record<'attribution' | 'imageUrl', string>;
 
@@ -18,7 +19,7 @@ export interface PartyHistory
 export interface Term
     extends Record<'congress' | 'startYear' | 'endYear', number>,
         Record<`state${'Code' | 'Name'}`, string> {
-    chamber: 'House' | 'Senate';
+    chamber: Chamber;
     memberType: 'Senator';
 }
 
