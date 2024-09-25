@@ -7,7 +7,10 @@ export const congressClient = new HTTPClient({
     responseType: 'json'
 });
 
-export type Base = Record<'updateDate' | 'url', string>;
+export interface Base {
+    updateDate: string;
+    url?: string;
+}
 
 export const createListStream =
     <D extends DataObject>() =>

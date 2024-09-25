@@ -64,6 +64,7 @@ export const congressStore = new CongressModel();
 Use [WebCell][7] as an Example
 
 ```tsx
+import { Session } from 'mobx-usa-congress';
 import { component, observer } from 'web-cell';
 
 import { congressStore } from '../model/Congress';
@@ -74,6 +75,24 @@ export class CongressPage extends HTMLElement {
     connectedCallback() {
         congressStore.getThisYearOne();
     }
+
+    renderSession = ({
+        type,
+        number,
+        chamber,
+        startDate,
+        endDate
+    }: Session) => (
+        <li key={chamber}>
+            <code>{type}</code> #{number} {chamber} (
+            <time dateTime={startDate}>
+                {new Date(startDate).toLocaleString()}
+            </time>{' '}
+            ~{' '}
+            <time dateTime={endDate}>{new Date(endDate).toLocaleString()}</time>
+            )
+        </li>
+    );
 
     render() {
         const { thisYearOne } = congressStore;
@@ -88,23 +107,7 @@ export class CongressPage extends HTMLElement {
                         {thisYearOne?.endYear})
                     </h2>
                     <h3>sessions</h3>
-                    <ul>
-                        {thisYearOne?.sessions.map(
-                            ({ type, number, chamber, startDate, endDate }) => (
-                                <li key={chamber}>
-                                    <code>{type}</code> #{number} {chamber} (
-                                    <time dateTime={startDate}>
-                                        {new Date(startDate).toLocaleString()}
-                                    </time>{' '}
-                                    ~{' '}
-                                    <time dateTime={endDate}>
-                                        {new Date(endDate).toLocaleString()}
-                                    </time>
-                                    )
-                                </li>
-                            )
-                        )}
-                    </ul>
+                    <ul>{thisYearOne?.sessions.map(this.renderSession)}</ul>
                 </section>
             </main>
         );
