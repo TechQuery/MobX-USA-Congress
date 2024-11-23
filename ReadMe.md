@@ -23,9 +23,6 @@
 npm i mobx-usa-congress
 ```
 
-> Some **Node.js** tips about the upstream `mobx-restful` you should know:
-> https://github.com/idea2app/MobX-RESTful?tab=readme-ov-file#usage
-
 ### `tsconfig.json`
 
 ```json
