@@ -8,12 +8,16 @@
 
 [![NPM](https://nodei.co/npm/mobx-usa-congress.png?downloads=true&downloadRank=true&stars=true)][6]
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)][7]
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)][8]
+
 ## Model
 
 1. [Congress](source/Congress.ts)
 2. [Member](source/Member.ts)
 3. [Hearing](source/Hearing.ts)
-4. [Summary](source/Summary.ts)
+4. [Committee](source/Committee.ts)
+5. [Summary](source/Summary.ts)
 
 ## Usage
 
@@ -60,7 +64,7 @@ export const congressStore = new CongressModel();
 
 ### `page/Congress.tsx`
 
-Use [WebCell][7] as an Example
+Use [WebCell][9] as an Example
 
 ```tsx
 import { Session } from 'mobx-usa-congress';
@@ -120,4 +124,6 @@ export class CongressPage extends HTMLElement {
 [4]: https://libraries.io/npm/mobx-usa-congress
 [5]: https://github.com/TechQuery/MobX-USA-Congress/actions/workflows/main.yml
 [6]: https://nodei.co/npm/mobx-usa-congress/
-[7]: https://github.com/EasyWebApp/WebCell
+[7]: https://codespaces.new/TechQuery/MobX-USA-Congress
+[8]: https://gitpod.io/?autostart=true#https://github.com/TechQuery/MobX-USA-Congress
+[9]: https://github.com/EasyWebApp/WebCell
