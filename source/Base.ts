@@ -12,6 +12,18 @@ export interface Base {
     url?: string;
 }
 
+export interface ListLink {
+    url: string;
+    count: number;
+}
+
+export type Chamber = 'House' | 'Senate';
+
+export interface CongressID {
+    congress?: number;
+    chamber?: Chamber;
+}
+
 export const createListStream =
     <D extends DataObject>() =>
     <K extends string>(key: K) =>

@@ -1,11 +1,9 @@
 import { observable } from 'mobx';
 import { ListModel, Stream, toggle } from 'mobx-restful';
 
-import { Base, congressClient, createListStream } from './Base';
+import { Base, Chamber, congressClient, createListStream } from './Base';
 import { Term } from './Member';
 import { SummaryModel } from './Summary';
-
-export type Chamber = 'House' | 'Senate';
 
 export interface Session extends Record<'startDate' | 'endDate', string> {
     type: 'R';

@@ -1,8 +1,13 @@
 import { ListModel, Stream, toggle } from 'mobx-restful';
 
-import { Base, congressClient, createListStream } from './Base';
+import {
+    Base,
+    Chamber,
+    congressClient,
+    CongressID,
+    createListStream
+} from './Base';
 import { Committee } from './Committee';
-import { Chamber } from './Congress';
 
 export interface Hearing
     extends Base,
@@ -16,27 +21,37 @@ export interface Hearing
     dates?: { date: string }[];
 }
 
-export class HearingModel extends Stream<Hearing>(ListModel) {
+export class HearingModel
+    extends Stream<Hearing>(ListModel)
+    implements CongressID
+{
     baseURI = 'hearing';
     client = congressClient;
 
-    constructor(
-        public congress?: number,
-        public chamber?: Chamber
-    ) {
+    congress?: number;
+    chamber?: Chamber;
+
+    constructor({ congress, chamber }: CongressID) {
         super();
 
-        if (congress) this.baseURI += `/${congress}`;
-        if (chamber) this.baseURI += `/${chamber}`;
+        if (congress) {
+            this.congress = congress;
+            this.baseURI += `/${congress}`;
+        }
+        if (chamber) {
+            this.chamber = chamber;
+            this.baseURI += `/${chamber}`;
+        }
     }
 
     openStream = createListStream<Hearing>()('hearings');
 
     @toggle('downloading')
     async getOne(jacketNumber: number) {
-        if (!this.congress || !this.chamber)
-            throw new ReferenceError('Congress & Chamber are required');
-
+        console.assert(
+            !!(this.congress && this.chamber),
+            'Congress & Chamber parameters are required'
+        );
         const { body } = await this.client.get<{ hearing: Hearing }>(
             `${this.baseURI}/${jacketNumber}`
         );

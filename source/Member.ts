@@ -1,8 +1,7 @@
 import { observable } from 'mobx';
 import { ListModel, Stream, toggle } from 'mobx-restful';
 
-import { Base, congressClient, createListStream } from './Base';
-import { Chamber } from './Congress';
+import { Base, Chamber, congressClient, createListStream } from './Base';
 
 export type Depiction = Record<'attribution' | 'imageUrl', string>;
 
