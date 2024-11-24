@@ -26,7 +26,7 @@ jobs:
             - name: Build & Publish
               run: |
                   echo GITHUB_PAT=${{ secrets.PAT }} > .env
-                  npm publish --access public
+                  npm publish --access public --provenance
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

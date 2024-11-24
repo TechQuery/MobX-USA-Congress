@@ -31,11 +31,11 @@ export class CongressModel extends Stream<Congress>(ListModel) {
     openStream = createListStream<Congress>()('congresses');
 
     @toggle('downloading')
-    async getOne(id: number) {
+    async getOne(congress: number) {
         const { body } = await this.client.get<{ congress: Congress }>(
-            `${this.baseURI}/${id}`
+            `${this.baseURI}/${congress}`
         );
-        this.currentSummary = new SummaryModel(id);
+        this.currentSummary = new SummaryModel({ congress });
 
         return (this.currentOne = body!.congress);
     }

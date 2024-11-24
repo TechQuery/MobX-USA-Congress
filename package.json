@@ -1,6 +1,6 @@
 {
     "name": "mobx-usa-congress",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "license": "LGPL-3.0-or-later",
     "author": "shiy2008@gmail.com",
     "description": "MobX SDK for USA Congress API, which is based on MobX-RESTful.",
@@ -43,7 +43,7 @@
         "parcel": "~2.13.0",
         "prettier": "^3.3.3",
         "typedoc": "^0.26.11",
-        "typedoc-plugin-mdn-links": "^4.0.0",
+        "typedoc-plugin-mdn-links": "^4.0.1",
         "typescript": "~5.7.2"
     },
     "prettier": {
@@ -63,7 +63,7 @@
     },
     "scripts": {
         "prepare": "husky",
-        "test": "lint-staged",
+        "test": "lint-staged  &&  tsc --noEmit",
         "build": "rm -rf .parcel-cache/ dist/ docs/  &&  parcel build  &&  typedoc source/",
         "prepublishOnly": "npm test  &&  npm run build"
     }

@@ -17,7 +17,8 @@
 2. [Member](source/Member.ts)
 3. [Hearing](source/Hearing.ts)
 4. [Committee](source/Committee.ts)
-5. [Summary](source/Summary.ts)
+5. [Bill](source/Bill.ts)
+6. [Summary](source/Summary.ts)
 
 ## Usage
 

@@ -1,7 +1,7 @@
 import { ListModel, Stream } from 'mobx-restful';
 
 import { Base, congressClient, createListStream } from './Base';
-import { Bill } from './Bill';
+import { Bill, BillOption } from './Bill';
 
 export interface Summary
     extends Base,
@@ -20,10 +20,7 @@ export class SummaryModel extends Stream<Summary>(ListModel) {
     baseURI = 'summaries';
     client = congressClient;
 
-    constructor(
-        public congress?: number,
-        public billType?: Bill['type']
-    ) {
+    constructor({ congress, billType }: BillOption = {}) {
         super();
 
         if (congress) this.baseURI += `/${congress}`;
