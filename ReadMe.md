@@ -16,7 +16,8 @@
 1. [Congress](source/Congress.ts)
 2. [Member](source/Member.ts)
 3. [Hearing](source/Hearing.ts)
-4. [Committee](source/Committee.ts)
+4. [Committee](source/Committee/index.ts)
+    1. [Print](source/Committee/Print.ts)
 5. [Bill](source/Bill.ts)
 6. [Summary](source/Summary.ts)
 
