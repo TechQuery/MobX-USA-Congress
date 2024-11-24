@@ -12,6 +12,8 @@ export interface Base {
     url?: string;
 }
 
+export type ItemLink = Record<'citation' | 'url', string>;
+
 export interface ListLink {
     url: string;
     count: number;

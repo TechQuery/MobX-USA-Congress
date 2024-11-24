@@ -31,7 +31,7 @@ export class HearingModel
     congress?: number;
     chamber?: Chamber;
 
-    constructor({ congress, chamber }: CongressID) {
+    constructor({ congress, chamber }: CongressID = {}) {
         super();
 
         if (congress) {
