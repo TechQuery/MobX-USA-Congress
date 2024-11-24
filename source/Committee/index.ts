@@ -6,7 +6,7 @@ import {
     CongressID,
     createListStream,
     ListLink
-} from './Base';
+} from '../Base';
 
 export type BaseCommittee = Record<'systemCode' | 'name' | 'url', string>;
 
